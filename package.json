@@ -1,0 +1,7 @@
+{
+  "name": "hahahe",
+  "private": true,
+  "dependencies": {
+    "bulma": "^0.6.2"
+  }
+}

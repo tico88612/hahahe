@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>花連體育會鐵人三項委員會</title>
+    <%= csrf_meta_tags %>
+    <!-- 裝置寬度 CSS 修正 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <!-- 裝置寬度 CSS 修正 -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'navbar' %>
+    <%= yield %>
+    <%= render 'footer' %>
+  </body>
+</html>
