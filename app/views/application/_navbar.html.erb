@@ -14,9 +14,11 @@
       <div class="navbar-start">
         <a href="/" class="navbar-item is-tab <%= 'is-active' if current_page? '/' %>">最新消息 News</a>
         <a href="/about" class="navbar-item is-tab <%= 'is-active' if current_page? '/about' %>">鐵人三項 About</a>
-        <a href="/race" class="navbar-item is-tab <%= 'is-active' if current_page? '/race' %>">賽事路線 Race</a>
+        <a href="/route" class="navbar-item is-tab <%= 'is-active' if current_page? '/route' %>">賽事路線 Route</a>
         <a href="/score" class="navbar-item is-tab <%= 'is-active' if current_page? '/score' %>">歷屆成績 Score</a>
-        <div class="navbar-item is-tab"><% Time.zone = "Taipei" %><%= Time.zone.now  %></div>
+      </div>
+      <div class="navbar-end">
+        <a href="#" class="navbar-item is-tab">登入 Login</a>
       </div>
     </div>
   </div>
