@@ -1,0 +1,44 @@
+<div class="container" style="max-width: 768px; background-color:#FFFFFF;" >
+  <%= image_tag 'news', alt: 'SBR', width: 768 %>
+  <section class="section">
+    <% if @announcement and @announcement.display %>
+    <h1 class="title is-3">最新消息 NEWS</h1>
+    <a href="/" class="button is-link is-outlined"><i class="icon ion-android-arrow-back is-small"></i>&nbsp;返回 Back</a>
+    <br>
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th class="is-hidden-mobile">公告標題：</th>  
+          <th style="width: 616px;"><% if @announcement.ontop %><i class="icon ion-pin is-small"></i><% end %><%= @announcement.title %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th class="is-hidden-mobile">類別：</th> 
+          <td>
+            <% if @announcement.classify == "SYSOP" %><span class="tag is-rounded is-danger">系統 SYSOP</span>
+            <% elsif @announcement.classify == "RACE" %><span class="tag is-rounded is-warning">比賽 RACE</span>
+            <% elsif @announcement.classify == "NEWS" %><span class="tag is-rounded is-link">新聞 NEWS</span>
+            <% elsif @announcement.classify == "AWARD" %><span class="tag is-rounded is-success">得獎 AWARD</span>
+            <% else %><span class="tag is-rounded is-black">未分類 UNKNOWN</span><% end %>
+          </td> 
+        </tr>  
+        <tr>
+          <th class="is-hidden-mobile">公告日期：</th> 
+          <td><%= @announcement.updated_at.to_time.strftime('%Y.%m.%d') %></td>
+        </tr>
+        <tr>
+          <th class="is-hidden-mobile">詳細內容：</th> 
+          <td><%= @announcement.context %></td>
+        </tr>
+        <tr>
+          <th class="is-hidden-mobile">附件：</th> 
+          <td>無</td>
+        </tr>
+      </tbody>
+    </table>
+    <% else %>
+      <h1 class="title">404 NOT FOUND</h1><a href="/" class="button is-link is-outlined"><i class="icon ion-android-arrow-back is-small"></i>&nbsp;返回 Back</a>
+    <% end %>
+  </section>
+</div>

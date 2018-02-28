@@ -1,0 +1,28 @@
+<div class="container" style="max-width: 768px; background-color:#FFFFFF;" >
+  <section class="section">
+    <h1 class="title">管理員登入 Login</h1>
+    <%= form_for :session do |f| %>
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <%= f.text_field :username, class: 'input', placeholder:"Username" %>
+        <span class="icon is-small is-left">
+          <i class="ion-person"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left">
+        <%= f.password_field :password, class: 'input', placeholder:"Password" %>
+        <span class="icon is-small is-left">
+          <i class="ion-locked"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <%= f.submit 'Login', class: 'button is-success' %>
+      </p>
+    </div>
+    <% end %>
+  </section>
+</div>

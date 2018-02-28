@@ -7,46 +7,53 @@
         <tr>
           <th></th>  
           <th>類別</th>
-          <th style="width: 438px;">標題</th>
+          <th style="width: 450px;">標題</th>
           <th>公告日期</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><i class="icon ion-pin is-small"></i></td> 
-          <th><span class="tag is-rounded is-danger is-hidden-tablet">系統</span><span class="tag is-rounded is-danger is-hidden-mobile">系統 SYSOP</span></th>
-          <td>
-              系統測試中
-          </td>
-          <td>2017.01.20</td>
-        </tr>
-        <tr>
-          <td></td> 
-          <th><span class="tag is-rounded is-warning is-hidden-tablet">比賽</span><span class="tag is-rounded is-warning is-hidden-mobile">比賽 RACE</span></th>
-          <td>Arsenal</td>
-          <td>2017.01.20</td>
-        </tr>
-        <tr>
-          <td></td> 
-          <th><span class="tag is-rounded is-link is-hidden-tablet">新聞</span><span class="tag is-rounded is-link is-hidden-mobile">新聞 NEWS</span></th>
-          <td>????</td>
-          <td>2017.01.20</td>
-        </tr>
-        <tr>
-          <td></td> 
-          <th><span class="tag is-rounded is-success is-hidden-tablet">得獎</span><span class="tag is-rounded is-success is-hidden-mobile">得獎 AWARD</span></th>
-          <td>?????</td>
-          <td>2017.01.20</td>
-        </tr>
+        <% @pages_ontop.each do |page| %>
+          <tr>
+            <td><i class="icon ion-pin is-small"></i></td> 
+            <td>
+              <% if page.classify == "SYSOP" %><span class="tag is-rounded is-danger is-hidden-tablet">系統</span><span class="tag is-rounded is-danger is-hidden-mobile">系統 SYSOP</span>
+              <% elsif page.classify == "RACE" %><span class="tag is-rounded is-warning is-hidden-tablet">比賽</span><span class="tag is-rounded is-warning is-hidden-mobile">比賽 RACE</span>
+              <% elsif page.classify == "NEWS" %><span class="tag is-rounded is-link is-hidden-tablet">新聞</span><span class="tag is-rounded is-link is-hidden-mobile">新聞 NEWS</span>
+              <% elsif page.classify == "AWARD" %><span class="tag is-rounded is-success is-hidden-tablet">得獎</span><span class="tag is-rounded is-success is-hidden-mobile">得獎 AWARD</span>
+              <% else %><span class="tag is-rounded is-black is-hidden-tablet">未分類</span><span class="tag is-rounded is-black is-hidden-mobile">未分類 Unkonwn</span><% end %>
+            </td>
+            <td>
+              <%= link_to announcement_path(page) do %>
+              <%= page.title %>
+              <% end %></td>
+            <td><%= page.updated_at.to_time.strftime('%Y.%m.%d') %></td>
+          </tr>
+        <% end %>
+        <% @pages_display.each do |page| %>
+          <tr>
+            <td></td> 
+            <td>
+              <% if page.classify == "SYSOP" %><span class="tag is-rounded is-danger is-hidden-tablet">系統</span><span class="tag is-rounded is-danger is-hidden-mobile">系統 SYSOP</span>
+              <% elsif page.classify == "RACE" %><span class="tag is-rounded is-warning is-hidden-tablet">比賽</span><span class="tag is-rounded is-warning is-hidden-mobile">比賽 RACE</span>
+              <% elsif page.classify == "NEWS" %><span class="tag is-rounded is-link is-hidden-tablet">新聞</span><span class="tag is-rounded is-link is-hidden-mobile">新聞 NEWS</span>
+              <% elsif page.classify == "AWARD" %><span class="tag is-rounded is-success is-hidden-tablet">得獎</span><span class="tag is-rounded is-success is-hidden-mobile">得獎 AWARD</span>
+              <% else %><span class="tag is-rounded is-black is-hidden-tablet">未分類</span><span class="tag is-rounded is-black is-hidden-mobile">未分類 UNKNOWN</span><% end %>
+            </td>
+            <td><%= link_to announcement_path(page) do %>
+              <%= page.title %>
+              <% end %></td>
+            <td><%= page.updated_at.to_time.strftime('%Y.%m.%d') %></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Previous</a>
-      <a class="pagination-next">Next page</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link is-current" aria-label="Goto page 1">1</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
-      </ul>
-    </nav>
+    <!--<nav class="pagination is-centered" role="navigation" aria-label="pagination">-->
+    <!--  <a class="pagination-previous">Previous</a>-->
+    <!--  <a class="pagination-next">Next page</a>-->
+    <!--  <ul class="pagination-list">-->
+    <!--    <li><a class="pagination-link is-current" aria-label="Goto page 1">1</a></li>-->
+    <!--    <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>-->
+    <!--  </ul>-->
+    <!--</nav>-->
   </section>
 </div>
