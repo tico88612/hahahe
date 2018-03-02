@@ -2,7 +2,7 @@
   <div class="container" style="max-width: 1003px; ">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <%= image_tag 'logo', alt: 'SBR' %> 鐵人三項
+        <%= image_tag 'logo', alt: 'SBR' %>&nbsp;鐵人三項
       </a>
     <button class="button navbar-burger" data-target="navMenu">
       <span></span>
@@ -18,13 +18,13 @@
         <a href="/score" class="navbar-item is-tab <%= 'is-active' if current_page? '/score' %>">歷屆成績 Score</a>
       </div>
       <div class="navbar-end">
-        <% if !session[:user_id] %><%= link_to '登入 Login', login_path, class:'navbar-item is-tab' %><% end %>
-        <% if session[:user_id] %><%= link_to '登出 Logout', logout_path, class:'navbar-item is-tab', method: :delete %><% end %>
-        <span class="navbar-item is-tab" id="resultDiv"></a>
+        <% if !current_user %><%= link_to '登入 Login', login_path, class:'navbar-item is-tab' %>
+        <span class="navbar-item is-tab" id="resultDiv"></span>
         <script>
-          document.getElementById("resultDiv").innerHTML = moment().locale('zh-tw').format("YYYY/MM/D HH:mm:ss");
-          setInterval('document.getElementById("resultDiv").innerHTML = moment().format("YYYY/MM/D HH:mm:ss");',1000);
+          document.getElementById("resultDiv").innerHTML = moment().locale('zh-tw').format("YYYY/MM/DD HH:mm:ss");
+          setInterval('document.getElementById("resultDiv").innerHTML = moment().format("YYYY/MM/DD HH:mm:ss");',1000);
         </script>
+        <% else %><span class="navbar-item is-tab" id="resultDiv"><%= current_user.yourname %>，您好</span><%= link_to '登出 Logout', logout_path, class:'navbar-item is-tab', method: :delete %><% end %>
       </div>
     </div>
   </div>

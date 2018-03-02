@@ -2,13 +2,26 @@
   <%= image_tag 'news', alt: 'SBR', width: 768 %>
   <section class="section">
     <h1 class="title">最新消息 NEWS</h1>
+    <% if current_user %>
+    <center>
+      <%= link_to(news_new_path, class: 'button is-info is-outlined') do %>
+        <span class="icon">
+          <i class="icon ion-plus"></i>
+        </span>
+        <span>新增公告</span>
+      <% end %>
+    </center>
+    <% end %>
     <table class="table is-hoverable">
       <thead>
         <tr>
-          <th></th>  
-          <th>類別</th>
-          <th style="width: 450px;">標題</th>
-          <th>公告日期</th>
+          <th style="width: 5%;"></th>  
+          <th style="width: 5%;">類別</th>
+          <th style="width: 60%;">標題</th>
+          <th style="width: 10%;"><span class="is-hidden-mobile">公告日期</span><span class="is-hidden-tablet">日期</span></th>
+          <% if current_user %>
+            <th style="width: 20%;">操作</th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -26,7 +39,21 @@
               <%= link_to announcement_path(page) do %>
               <%= page.title %>
               <% end %></td>
-            <td><%= page.updated_at.to_time.strftime('%Y.%m.%d') %></td>
+            <td><span class="is-hidden-mobile"><%= page.updated_at.to_time.strftime('%Y.%m.%d') %></span><span class="is-hidden-tablet"><%= page.updated_at.to_time.strftime('%y.%m.%d') %></span></td>
+            <% if current_user %>
+              <td>
+                <%= link_to announcement_edit_path(page) do %>
+                  <span class="icon">
+                    <i class="icon ion-edit"></i>
+                  </span>
+                <% end %>
+                <%= link_to announcement_path(page), method: :delete, data: { confirm: '確定要刪除這個公告？'} do %>
+                <span class="icon">
+                  <i class="icon ion-trash-b"></i>
+                </span>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
         <% @pages_display.each do |page| %>
@@ -42,7 +69,21 @@
             <td><%= link_to announcement_path(page) do %>
               <%= page.title %>
               <% end %></td>
-            <td><%= page.updated_at.to_time.strftime('%Y.%m.%d') %></td>
+            <td><span class="is-hidden-mobile"><%= page.updated_at.to_time.strftime('%Y.%m.%d') %></span><span class="is-hidden-tablet"><%= page.updated_at.to_time.strftime('%y.%m.%d') %></span></td>
+            <% if current_user %>
+              <td>
+                <%= link_to announcement_edit_path(page) do %>
+                  <span class="icon">
+                    <i class="icon ion-edit"></i>
+                  </span>
+                <% end %>
+                <%= link_to announcement_path(page), method: :delete, data: { confirm: '確定要刪除這個公告？'} do %>
+                <span class="icon">
+                  <i class="icon ion-trash-b"></i>
+                </span>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

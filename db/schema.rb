@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227140325) do
+ActiveRecord::Schema.define(version: 20180302075812) do
 
   create_table "pages", force: :cascade do |t|
     t.string "classify"
@@ -20,10 +20,12 @@ ActiveRecord::Schema.define(version: 20180227140325) do
     t.boolean "display"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "attachment"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+    t.string "yourname"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
