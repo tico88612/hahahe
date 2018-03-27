@@ -1,0 +1,98 @@
+<%= form_for @page , url: @page.id ? edit_announcement_path(@page.id) : news_create_path  do |f| %>
+      <table class="table is-hoverable">
+        <tbody>
+          <tr>
+            <th><%= f.label :title, '標題：', class: 'is-hidden-mobile' %></th>
+            <td style="width :616px"><%= f.text_field :title, class: 'input', placeholder: '公告標題' %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :classify, '類別：', class: 'is-hidden-mobile' %></th>
+            <td>
+              <div class="select is-rounded">
+                <%= select("page", :classify) do %>
+                  <%= options_for_select([["比賽 RACE", "RACE"], ["新聞 NEWS", "NEWS"], ["得獎 AWARD", "AWARD"], ["系統 SYSOP", "SYSOP"]],@page.classify) %>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :ontop, '置頂：', class: 'is-hidden-mobile' %></th>
+            <td>
+              <label class="radio">
+                <%= f.radio_button("ontop", "true") %>
+                置頂
+              </label>
+              <label class="radio">
+                <%= f.radio_button("ontop", "false") %>
+                一般
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :display, '顯示：', class: 'is-hidden-mobile' %></th>
+            <td>
+              <label class="radio">
+                <%= f.radio_button("display", "true") %>
+                顯示
+              </label>
+              <label class="radio">
+                <%= f.radio_button("display", "false") %>
+                隱藏
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :context, '詳細內容：', class: 'is-hidden-mobile' %></th>
+            <td><%= f.text_area :context, cols: 40, class: 'textarea', placeholder: '詳細內容' %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :attachment, '附件：', class: 'is-hidden-mobile' %></th>
+            <td>
+              <div class="file has-name">
+                <label class="file-label">
+                  <%= f.file_field :attachment, class: 'file-input' %>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="ion ion-android-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Choose a file…
+                    </span>
+                  </span>
+                  <span class="file-name" id="filename">
+                  </span>
+                </label>
+              </div>
+            </td>
+          </tr>
+          <% if @page.attachment.file.filename != false %>
+            <tr>
+              <th class="is-hidden-mobile">刪除：</th> 
+              <td>
+                <label class="checkbox">
+                <%= f.check_box('remove_attachment') %>
+                刪除檔案
+                </label>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <script>
+        var file = document.getElementById("page_attachment");
+        file.onchange = function(){
+          if(file.files.length > 0)
+          {
+            document.getElementById('filename').innerHTML = file.files[0].name;
+          }
+        };
+      </script>
+      <div class="field is-grouped">
+        <div class="control">
+          <%= f.submit (@page.id ? '修改' : '新增' )+'公告', class: "button is-success"%>
+        </div>
+        <div class="control">
+          <input type="reset" class="button">
+        </div>
+      </div>
+    <% end %>
